@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,15 +48,15 @@ public class UserController {
 
     /**
      * spring-mvc 数据校验
+     *
      * @param userInfo
      * @param bindingResult
      * @return
      */
     @RequestMapping(value = "addUserInfoValidated", produces = "text/html;charset=utf-8")
     @ResponseBody
-    public Object addUserInfo(@Validated UserInfo userInfo , BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-        {
+    public Object addUserInfo(@Validated UserInfo userInfo, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return bindingResult.getFieldError().getDefaultMessage();
         }
         userInfoService.addUserInfo(userInfo);
@@ -68,15 +66,15 @@ public class UserController {
 
     /**
      * 数据校验
+     *
      * @param userInfo
      * @param bindingResult
      * @return
      */
     @RequestMapping(value = "hibernateValidated", produces = "text/html;charset=utf-8")
     @ResponseBody
-    public Object addUserInfoForHibernate(@Valid UserInfo userInfo , BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-        {
+    public Object addUserInfoForHibernate(@Valid UserInfo userInfo, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return bindingResult.getFieldError().getDefaultMessage();
         }
         userInfoService.addUserInfo(userInfo);
@@ -105,20 +103,20 @@ public class UserController {
 
     @RequestMapping(value = "requestUserInfo", produces = "text/html;charset=utf-8")
     @ResponseBody
-    public Object requestUserInfo(HttpServletRequest request,HttpSession session) {
+    public Object requestUserInfo(HttpServletRequest request, HttpSession session) {
         UserInfo userInfo = new UserInfo();
         userInfo.setUserName("seen");
         userInfo.setAddress("来广营");
         userInfo.setEmail("437436270@qq.com");
         userInfo.setMobile("18336009873");
-        session.setAttribute("name",userInfo.getUserName());
+        session.setAttribute("name", userInfo.getUserName());
         return userInfo;
     }
 
 
     @RequestMapping(value = "sessionUserInfo", produces = "text/html;charset=utf-8")
     @ResponseBody
-    public Object sessionUserInfo(HttpSession session,HttpServletRequest request) {
+    public Object sessionUserInfo(HttpSession session, HttpServletRequest request) {
         String name = (String) session.getAttribute("name");
         System.out.println(name);
         UserInfo userInfo = new UserInfo();

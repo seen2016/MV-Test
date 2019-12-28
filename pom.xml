@@ -64,7 +64,20 @@
             <artifactId>jboss-logging</artifactId>
             <version>3.1.1.GA</version>
         </dependency>
+        <!--hibernate 的数据校验框架-->
 
+        <!--引入mybatis框架-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+        </dependency>
+        <!--引入mybatis框架-->
     </dependencies>
 
     <build>

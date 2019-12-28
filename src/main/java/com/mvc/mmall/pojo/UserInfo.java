@@ -1,5 +1,6 @@
 package com.mvc.mmall.pojo;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Size;
@@ -9,7 +10,7 @@ import javax.validation.constraints.Size;
  */
 
 public class UserInfo {
-    @Size(min = 6,max = 20,message = "用户名必须是6-20")
+    @NotEmpty(message = "用户名不能为空")
     private String userName;
     private String address;
     private String email;
